@@ -1,0 +1,259 @@
+/* =====================================================
+   Base & Reset
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+
+  /* ADA-safe subtle light gradient */
+  background: linear-gradient(
+    180deg,
+    #fafafa 0%,
+    #ffffff 40%,
+    #ffffff 100%
+  );
+
+  color: #1a1a1a;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* =====================================================
+   Page Layout
+===================================================== */
+
+.page {
+  max-width: 640px;
+  margin: 72px auto;
+  padding: 0 20px;
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 56px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+}
+
+/* =====================================================
+   Navigation (janvi-style)
+===================================================== */
+
+.controls {
+  text-align: right;
+}
+
+.nav {
+  margin-bottom: 12px;
+}
+
+.nav-link {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  margin-left: 10px;
+  font-size: 0.95rem;
+  color: #8a8a8a;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 6px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.nav-link:first-child {
+  margin-left: 0;
+}
+
+.nav-link:hover {
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.nav-link.active {
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+}
+
+/* =====================================================
+   Dark Mode Toggle
+===================================================== */
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #8a8a8a;
+  margin-left: 8px;
+}
+
+.theme-toggle:hover {
+  color: #000;
+}
+
+/* =====================================================
+   Sections / Smooth Transitions
+===================================================== */
+
+.section {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* =====================================================
+   Content
+===================================================== */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 12px;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.desc {
+  color: #6b6b6b;
+}
+
+/* =====================================================
+   Links
+===================================================== */
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   Footer / Social Links
+===================================================== */
+
+.footer {
+  margin-top: 72px;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  margin-right: 18px;
+  color: #6b6b6b;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #000;
+}
+
+/* =====================================================
+   Dark Mode
+===================================================== */
+
+body.dark {
+  background: linear-gradient(
+    180deg,
+    #0e0e0e 0%,
+    #121212 40%,
+    #121212 100%
+  );
+  color: #e6e6e6;
+}
+
+body.dark .subtitle,
+body.dark .desc,
+body.dark .footer a,
+body.dark .nav-link,
+body.dark .theme-toggle {
+  color: #9a9a9a;
+}
+
+body.dark .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+body.dark .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+body.dark .footer a:hover,
+body.dark .theme-toggle:hover {
+  color: #ffffff;
+}
+
+body.dark a {
+  color: #ffffff;
+}
+/* =====================================================
+   Theme Transition Overlay
+===================================================== */
+
+#theme-overlay {
+  position: fixed;
+  inset: 0;
+  background: #121212;
+  pointer-events: none;
+
+  /* START COMPLETELY HIDDEN */
+  clip-path: circle(0% at 50% 50%);
+
+  transition: clip-path 0.45s ease-in-out;
+  z-index: 999;
+}
+
+/* Light mode overlay color */
+body:not(.dark) #theme-overlay {
+  background: #ffffff;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  #theme-overlay {
+    transition: none;
+  }
+}
